@@ -1,15 +1,15 @@
 const express =  require('express');
-const service = require('../services/userService');
 const userService = require('../services/userService');
 
 const router = express.Router();
+//ojo en el package jason cambiar esto por sea caso "mysql2": "^3.11.3"  y "test": "echo \"Error: no test specified\" && exit 1"
 
 router.get('/', async (req, res) =>{
     const users = await userService.getAllUsers();
     res.json(users);
 });
 
-router.get('/', async (req, res) =>{
+router.get('/:id', async (req, res) =>{ //ojo si ese "/" fuera /listar para usar en el tunder client se debe agregar com esta en la URL
     const user = await userService.getUserById(req.params.id);
     if(user){
         res.json(user);
@@ -23,19 +23,19 @@ router.post('/', async (req,res)=>{
     res.status(201).json(newUser);
 });
 
-router.put('/', async (res,res)=>{
-    const uptadeUser = await userService.updateUser(req.params.id, res.body);
+router.put('/:id', async (req,res)=>{
+    const uptadeUser = await userService.updateUser(req.params.id, req.body);
     if(uptadeUser){
-        req.json(uptadeUser);
+        res.json(uptadeUser);
     }else{
         res.status(404).json({message:'user not found'});
     }
 });
 
-router.delete('/', async (req,res)=>{
+router.delete('/:id', async (req,res)=>{
     const deleteUser = await userService.deleteUser(req.params.id);
     if(deleteUser){
-        req.status(204).send();
+        res.status(204).send();
     }else{
         res.status(404).json({message:'user not found'});
     }
