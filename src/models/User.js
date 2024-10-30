@@ -1,7 +1,7 @@
 
 class User{
 
-    static tableName = 'usuario'
+    static tableName = 'usuario';
 
     constructor(id, name, email){
         this.id = id;

@@ -8,9 +8,11 @@ app.use('/api/users', userController); //el /api/users sirve para probar en el T
 
 const PORT = process.env.PORT || 3000;
 
+/*
 app.get('/', (req,res)=>{
    res.send("hola mundo");
 })
+*/
 
 app.listen(PORT, ()=>{
    console.log(`servidor se corre en tu cara http://localhost:${PORT}`); 
