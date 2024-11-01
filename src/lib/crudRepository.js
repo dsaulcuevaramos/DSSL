@@ -15,6 +15,7 @@ class CrudRepository{
     constructor(model){
         this.model = model;
         this.tableName = model.tableName;
+        this.pool = pool;
     }
 
     async findAll(){
